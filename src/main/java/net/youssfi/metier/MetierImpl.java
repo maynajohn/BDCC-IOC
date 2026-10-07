@@ -2,15 +2,15 @@ package net.youssfi.metier;
 
 import net.youssfi.dao.IDao;
 
-public class IMetierImpl implements IMetier {
+public class MetierImpl implements IMetier {
     private IDao dao;
 
 
-    public IMetierImpl(IDao dao) {
+    public MetierImpl(IDao dao) {
         this.dao = dao;
     }
 
-    public IMetierImpl() {
+    public MetierImpl() {
     }
 
     @Override

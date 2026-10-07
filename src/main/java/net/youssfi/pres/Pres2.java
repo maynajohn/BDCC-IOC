@@ -1,17 +1,28 @@
 package net.youssfi.pres;
 
 import net.youssfi.dao.IDao;
+import net.youssfi.metier.IMetier;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 
 public class Pres2 {
-    public static void main() throws FileNotFoundException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static void main() throws Exception {
         Scanner scanner = new Scanner(new File("config.txt"));
+
         String daoClassName = scanner.nextLine();
         Class cDao = Class.forName(daoClassName);
-        IDao dao=(IDao) cDao.newInstance();
-        System.out.println(dao.getData());
+        IDao d=(IDao) cDao.newInstance();
+
+        String metierClassName = scanner.nextLine();
+        Class cMetier = Class.forName(metierClassName);
+        IMetier metier= (IMetier) cMetier.getConstructor(IDao.class).newInstance(d);
+
+
+        System.out.println("Res= "+metier.calcul());
+
+
     }
 }
